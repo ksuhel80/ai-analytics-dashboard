@@ -399,7 +399,7 @@ console.log("Preview data:", dashboard?.dataset?.preview_data)
                   </div>
                 ) : (
                   <InsightsSummary 
-                    insights={dashboard.insights || []} 
+                    insights={dashboard?.insights || []} 
                     isLoading={isAnalyzing} 
                     onGenerateMore={handleReanalyze} 
                   /> 
