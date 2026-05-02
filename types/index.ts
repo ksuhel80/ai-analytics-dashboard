@@ -25,18 +25,15 @@ export interface ColumnInfo {
   mean?: number 
 } 
 
-export interface Dashboard { 
+export interface Insight { 
   id: string 
+  dashboard_id: string 
   user_id: string 
-  dataset_id: string 
-  name: string 
-  description: string | null 
-  is_pinned: boolean 
+  type: 'summary' | 'anomaly' | 'trend' | 'recommendation' | 'answer' 
+  title: string 
+  content: string 
+  question: string | null 
   created_at: string 
-  updated_at: string 
-  dataset?: Dataset 
-  charts?: Chart[] 
-  insights?: Insight[] 
 } 
 
 export interface Chart { 
@@ -54,15 +51,18 @@ export interface Chart {
   created_at: string 
 } 
 
-export interface Insight { 
-  id: string 
-  dashboard_id: string 
-  user_id: string 
-  type: 'summary' | 'anomaly' | 'trend' | 'recommendation' | 'answer' 
-  title: string 
-  content: string 
-  question: string | null 
-  created_at: string 
+export interface Dashboard {
+  id: string
+  user_id: string
+  dataset_id: string
+  name: string
+  description: string | null
+  is_pinned: boolean
+  created_at: string
+  updated_at: string
+  dataset?: Dataset
+  charts?: Chart[]
+  insights?: Insight[]
 } 
 
 export interface DataChat { 
@@ -98,4 +98,4 @@ export interface AIAnalysisResult {
   trends: string[] 
   recommendations: string[] 
   chart_suggestions: ChartSuggestion[] 
-} 
+}

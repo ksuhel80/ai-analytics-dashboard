@@ -398,11 +398,13 @@ console.log("Preview data:", dashboard?.dataset?.preview_data)
                     {[1, 2, 3, 4, 5].map(i => <InsightSkeleton key={i} />)}
                   </div>
                 ) : (
-                  <InsightsSummary 
-                    insights={dashboard?.insights || []} 
-                    isLoading={isAnalyzing} 
-                    onGenerateMore={handleReanalyze} 
-                  /> 
+                  dashboard && (
+                    <InsightsSummary 
+                      insights={dashboard.insights || []} 
+                      isLoading={isAnalyzing} 
+                      onGenerateMore={handleReanalyze} 
+                    />
+                  )
                 )}
               </div>
             )}
