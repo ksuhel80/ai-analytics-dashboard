@@ -47,8 +47,12 @@ Return this exact JSON structure:
   ]
 }`
 
+    const messages: Groq.Chat.ChatCompletionMessageParam[] = [
+      { role: 'user' as const, content: prompt }
+    ]
+
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user' as const, content: prompt }],
+      messages,
       model: MODEL,
       temperature: 0.3,
     })
@@ -78,7 +82,7 @@ export async function answerDataQuestion(
 Sample Data: ${JSON.stringify(sampleData.slice(0, 5))}
 Question: ${question}`
 
-    const messages = [
+    const messages: Groq.Chat.ChatCompletionMessageParam[] = [
       { role: 'system', content: systemPrompt },
       ...chatHistory.slice(-6).map(chat => ({
         role: chat.role === 'assistant' ? ('assistant' as const) : ('user' as const),
@@ -115,8 +119,12 @@ export async function generateInsightSummary(
 Insights:
 ${insights.map(i => `- ${i.title}: ${i.content}`).join('\n')}`
 
+    const messages: Groq.Chat.ChatCompletionMessageParam[] = [
+      { role: 'user' as const, content: prompt }
+    ]
+
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user' as const, content: prompt }],
+      messages,
       model: MODEL,
       temperature: 0.5,
     })
@@ -141,8 +149,12 @@ Data Sample: ${JSON.stringify(data.slice(0, 20))}
 
 Example output: ["The 'Revenue' column has 3 significant outliers above $1M", "Unexpected negative values found in 'StockLevel'"]`
 
+    const messages: Groq.Chat.ChatCompletionMessageParam[] = [
+      { role: 'user' as const, content: prompt }
+    ]
+
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user' as const, content: prompt }],
+      messages,
       model: MODEL,
       temperature: 0.3,
     })
