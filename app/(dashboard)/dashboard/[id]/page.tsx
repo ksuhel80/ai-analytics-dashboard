@@ -399,19 +399,19 @@ console.log("Preview data:", dashboard?.dataset?.preview_data)
                   </div>
                 ) : (
                   <InsightsSummary 
-                    insights={dashboard?.insights || []} 
-                    isLoading={isAnalyzing}
-                    onGenerateMore={handleReanalyze}
-                  />
+                    insights={dashboard.insights || []} 
+                    isLoading={isAnalyzing} 
+                    onGenerateMore={handleReanalyze} 
+                  /> 
                 )}
               </div>
             )}
 
-            {activeTab === 'chat' && (
+            {activeTab === 'chat' && dashboard && (
               <div style={{ height: 'calc(100vh - 250px)', maxWidth: '900px', margin: '0 auto' }}>
                 <DataChatPanel 
-                  dashboardId={dashboard!.id} 
-                  columns={dashboard?.dataset?.columns || []} 
+                  dashboardId={dashboard.id} 
+                  columns={dashboard.dataset?.columns || []} 
                   onChartSuggestion={(suggestion) => {
                     handleAddChart({
                       chart_type: suggestion.chart_type as any,
