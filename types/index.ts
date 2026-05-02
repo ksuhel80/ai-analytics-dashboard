@@ -36,6 +36,7 @@ export interface Dashboard {
   updated_at: string 
   dataset?: Dataset 
   charts?: Chart[] 
+  insights?: Insight[] 
 } 
 
 export interface Chart { 
