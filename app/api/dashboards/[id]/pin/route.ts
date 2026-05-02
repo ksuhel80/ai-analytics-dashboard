@@ -3,8 +3,9 @@ import { NextResponse } from 'next/server'
 
 export async function POST(
   req: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await params
   const supabase = await createServerSupabase()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
@@ -13,13 +14,13 @@ export async function POST(
   const { data: current } = await supabase
     .from('dashboards')
     .select('is_pinned')
-    .eq('id', params.id)
+    .eq('id', id)
     .single()
 
   const { data, error } = await supabase
     .from('dashboards')
     .update({ is_pinned: !current?.is_pinned })
-    .eq('id', params.id)
+    .eq('id', id)
     .eq('user_id', user.id)
     .select()
     .single()
