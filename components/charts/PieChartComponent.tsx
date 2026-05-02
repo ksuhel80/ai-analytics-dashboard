@@ -59,7 +59,7 @@ export default function PieChartComponent({
             cy="50%"
             outerRadius={80}
             fill="#8884d8"
-            label={({ percent }) => `${(percent * 100).toFixed(0)}%`}
+            label={({ percent }) => percent ? `${(percent * 100).toFixed(0)}%` : ''}
             isAnimationActive={!isExportMode}
             animationDuration={isExportMode ? 0 : 1500}
           >
