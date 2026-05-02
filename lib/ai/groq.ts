@@ -48,7 +48,7 @@ Return this exact JSON structure:
 }`
 
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user' as const, content: prompt }],
       model: MODEL,
       temperature: 0.3,
     })
@@ -116,7 +116,7 @@ Insights:
 ${insights.map(i => `- ${i.title}: ${i.content}`).join('\n')}`
 
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user' as const, content: prompt }],
       model: MODEL,
       temperature: 0.5,
     })
@@ -142,7 +142,7 @@ Data Sample: ${JSON.stringify(data.slice(0, 20))}
 Example output: ["The 'Revenue' column has 3 significant outliers above $1M", "Unexpected negative values found in 'StockLevel'"]`
 
     const completion = await groq.chat.completions.create({
-      messages: [{ role: 'user', content: prompt }],
+      messages: [{ role: 'user' as const, content: prompt }],
       model: MODEL,
       temperature: 0.3,
     })
